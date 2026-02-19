@@ -17,5 +17,5 @@ def test_single_select(page: Page, value: str) -> None:
     page.locator('#id_choose_language').select_option(value)
     page.locator('#submit-id-submit').click()
 
-    expect(page.locator('#result-text'), value)
+    expect(page.locator('#result-text')).to_have_text(value)
 
