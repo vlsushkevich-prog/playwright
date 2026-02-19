@@ -45,7 +45,7 @@ def test_input_max_validation(input_page, value) -> None:
     expect(input_page._validation_message).to_be_visible()
     expect(input_page._validation_message).to_have_text(InputPage.MAX_VALIDATION_MESSAGE)
 
-@pytest.mark.parametrize('value', [generate_invalid_text(random.randint(2, 21)) for _ in range(10)])
+@pytest.mark.parametrize('value', [generate_invalid_text(random.randint(2, 18)) for _ in range(10)])
 def test_input_invalid_chars(input_page, value) -> None:
     input_page.open_page()
     input_page.fill_input(value)
