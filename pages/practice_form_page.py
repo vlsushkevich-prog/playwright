@@ -7,6 +7,7 @@ class PracticeFormPage:
     PHONE_NUMBER_VALIDATION_MESSAGE = 'Mobile number must be exactly 10 digits'
 
     def __init__(self, page: Page) -> None:
+        # initial page locators
         self.page = page
         self.firstname_input = page.locator('//input[@name="first_name"]')
         self.lastname_input = page.locator('//input[@name="last_name"]')
@@ -24,6 +25,7 @@ class PracticeFormPage:
         self.city_dropdown = page.locator('#div_id_city .custom-dropdown-control')
         self.submit_button = page.get_by_role('button', name='Submit')
 
+        # result modal locators
         self.results_modal = page.locator('#resultsModal')
         self.results_modal_header = page.locator('.modal-title')
         self.result_name = page.locator('tr:has-text("Student Name") td:nth-child(2)')
@@ -37,8 +39,10 @@ class PracticeFormPage:
         self.result_address = page.locator('tr:has-text("Address") td:nth-child(2)')
         self.result_state_and_city = page.locator('tr:has-text("State and City") td:nth-child(2)')
 
+        # validation messages locators
         self.phone_number_validation = page.locator('#error_1_id_mobile')
 
+    # fill methods
     def open_practice_form(self) -> None:
         self.page.goto(URL)
 
@@ -116,6 +120,7 @@ class PracticeFormPage:
     def submit_form(self) -> None:
         self.submit_button.click()
 
+    # check methods
     def verify_form(self, user) -> None:
         expect(self.results_modal).to_be_visible()
         expect(self.results_modal_header).to_have_text(self.SUCCESS_FORM_SUBMIT_HEADER)
