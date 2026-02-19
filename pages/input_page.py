@@ -1,7 +1,7 @@
 from playwright.sync_api import Page
 
 
-class InputPage():
+class InputPage:
     MIN_VALIDATION_MESSAGE = 'Please enter 2 or more characters'
     MAX_VALIDATION_MESSAGE = 'Please enter no more than 25 characters'
     INVALID_CHAR_MESSAGE = ('Enter a valid string consisting of letters, numbers,'
