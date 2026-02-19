@@ -13,6 +13,8 @@ class PracticeFormPage:
         self._mobile_number_input = page.locator('//input[@name="mobile"]')
         self._birthday_picker = page.locator('//input[@name="date_of_birth"]')
         self._subjects_input = page.locator('//input[@id="subjectsAutocomplete"]')
+        self._subjects_option_first = page.locator('.suggestion-item').first
+        self._subject_name = None
         self._subject_suggestions_input = page.locator('#subjectsAutocomplete')
         self._hobbies_sport_checkbox = page.get_by_label('Sports')
         self._hobbies_reading_checkbox = page.get_by_label('Reading')
@@ -64,7 +66,8 @@ class PracticeFormPage:
 
     def select_subjects(self, subject: str) -> None:
         self._subject_suggestions_input.fill(subject)
-        self.page.locator('.suggestion-item', has_text='Social Studies').click()
+        self._subjects_option_first.click()
+        self._subject_name = self._subjects_option_first.inner_text()
 
     def select_hobbies(self, hobbies: list) -> None:
         if 'Sports' in hobbies:
@@ -86,7 +89,7 @@ class PracticeFormPage:
 
     def select_state(self, state: str) -> None:
         self._state_dropdown.click()
-        self.page.locator(f'[data-value={state}]').click()
+        self.page.locator(f'[data-value="{state}"]').click()
 
     def select_city(self, city: str) -> None:
         self._city_dropdown.click()

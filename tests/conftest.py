@@ -15,4 +15,4 @@ def practice_page(page: Page):
 
 @pytest.fixture
 def practice_form_test_data():
-    return TestDataPracticeForm()
+    return TestDataPracticeForm().generate_random_data(firstname_len=8, lastname_len=8, email_len=8, address_len=50)
